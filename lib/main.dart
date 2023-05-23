@@ -31,6 +31,16 @@ class _PinnedSearchBarAppState extends State<PinnedSearchBarApp> {
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: SearchBar(
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search),
+                ),
+              ),
+            ),
+            Container(height: 50,),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: SearchBar(
                 backgroundColor: MaterialStatePropertyAll(Colors.white),
                 overlayColor: MaterialStateProperty.all(Colors.transparent),
                 shape: MaterialStateProperty.all(LinearBorder.none),
@@ -53,7 +63,56 @@ class _PinnedSearchBarAppState extends State<PinnedSearchBarApp> {
                 ],
               ),
             ),
+
+
             Container(height: 50,),
+
+            Padding(
+              padding: EdgeInsets.only(left: 40, right: 40),
+              child: SearchAnchor.bar(
+                suggestionsBuilder:
+                    (BuildContext context, SearchController controller) {
+                  return List<Widget>.generate(
+                    5,
+                        (int index) {
+                      return ListTile(
+                        titleAlignment: ListTileTitleAlignment.center,
+                        title: Text('Initial list item $index'),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+
+            Container(height: 50,),
+
+            Padding(
+              padding: EdgeInsets.only(left: 40, right: 40),
+              child: SearchAnchor.bar(
+
+                viewConstraints: BoxConstraints(maxHeight: 320),
+                barOverlayColor: MaterialStatePropertyAll(Colors.transparent),
+
+                barShape: MaterialStateProperty.all(LinearBorder.none),
+                viewShape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                constraints: BoxConstraints.tight(Size.fromHeight(48)),
+                suggestionsBuilder:
+                    (BuildContext context, SearchController controller) {
+                  return List<Widget>.generate(
+                    5,
+                        (int index) {
+                      return ListTile(
+                        titleAlignment: ListTileTitleAlignment.center,
+                        title: Text('Initial list item $index'),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+
+
             // SearchAnchor(builder: builder, suggestionsBuilder: suggestionsBuilder)
           ],
         ),
